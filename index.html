@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #36B37E;
+      color: white;
+      padding: 1.2rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom-left-radius: 1.2rem;
+      border-bottom-right-radius: 1.2rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    .profile-container {
+      position: relative;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-image: url('https://randomuser.me/api/portraits/women/44.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid white;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 55px;
+      right: 0;
+      background: white;
+      border-radius: 0.6rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 1rem;
+    }
+
+    .points-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .points-card h2 {
+      font-size: 2rem;
+      color: #36B37E;
+      margin-bottom: 0.5rem;
+    }
+
+    .points-card p {
+      font-size: 1rem;
+      color: #777;
+    }
+
+    .actions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .action {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action span {
+      font-weight: 600;
+    }
+
+    .reward-button {
+      background-color: #36B37E;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 0.8rem;
+      margin-top: 1.5rem;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .reward-button:hover {
+      background-color: #2e9b6c;
+    }
+
+    .icon {
+      color: #36B37E;
+      font-size: 1.2rem;
+    }
+
+    .available-actions {
+      margin-top: 2rem;
+    }
+
+    .available-actions h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .action-card {
+      background: white;
+      border-radius: 0.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .action-card:hover {
+      transform: scale(1.02);
+    }
+
+    .action-card i {
+      font-size: 1.5rem;
+      color: #36B37E;
+    }
+
+    .action-card div {
+      flex: 1;
+    }
+
+    .action-card .points {
+      font-weight: bold;
+      color: #36B37E;
+    }
+
+    .sensibilisation {
+      margin-top: 3rem;
+    }
+
+    .sensibilisation h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    .sensibilisation ul {
+      list-style: disc inside;
+      color: #555;
+      padding-left: 1rem;
+    }
+
+    .sensibilisation li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const profilePic = document.querySelector('.profile-pic');
+      const dropdown = document.querySelector('.dropdown-menu');
+      profilePic.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', (e) => {
+        if (!profilePic.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>The Loop</h1>
+    <div class="profile-container">
+      <div class="profile-pic"></div>
+      <div class="dropdown-menu">
+        <a href="#">👤 Mon profil</a>
+        <a href="#">⚙️ Paramètres</a>
+        <a href="#">👩‍🎓 Prénom Nom</a>
+        <a href="#">🤝 Devenir partenaire</a>
+        <a href="#">🚪 Déconnexion</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="points-card">
+      <h2>1200 pts</h2>
+      <p>Bravo ! Continue tes actions responsables 🎉</p>
+    </div>
+
+    <div class="actions-list">
+      <div class="action">
+        <span><i class="fas fa-car icon"></i> Covoiturage effectué</span>
+        <span>+50 pts</span>
+      </div>
+      <div class="action">
+        <span><i class="fas fa-bicycle icon"></i> Venu à vélo</span>
+        <span>+30 pts</span>
+      </div>
+      <div class="action">
+        <span><i class="fas fa-bottle-water icon"></i> Gourde réutilisée</span>
+        <span>+10 pts</span>
+      </div>
+    </div>
+
+    <button class="reward-button"><i class="fas fa-gift"></i> Voir mes récompenses</button>
+
+    <div class="available-actions">
+      <h3>Actions à effectuer</h3>
+      <div class="action-card">
+        <i class="fas fa-mobile-alt"></i>
+        <div>
+          <div>Donner un vieux téléphone</div>
+          <div class="points">+80 pts</div>
+        </div>
+      </div>
+      <div class="action-card">
+        <i class="fas fa-tree"></i>
+        <div>
+          <div>Planter un arbre</div>
+          <div class="points">+100 pts</div>
+        </div>
+      </div>
+      <div class="action-card">
+        <i class="fas fa-hand-holding-heart"></i>
+        <div>
+          <div>Participer à un événement solidaire</div>
+          <div class="points">+70 pts</div>
+        </div>
+      </div>
+      <div class="action-card">
+        <i class="fas fa-recycle"></i>
+        <div>
+          <div>Recycler ses déchets électroniques</div>
+          <div class="points">+60 pts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sensibilisation">
+      <h3>Sensibilisation & Conseils</h3>
+      <ul>
+        <li>Éteins les lumières et les appareils inutilisés.</li>
+        <li>Privilégie les transports en commun ou le vélo.</li>
+        <li>Réduis ta consommation de plastique à usage unique.</li>
+        <li>Favorise une alimentation locale et de saison.</li>
+        <li>Participe à des ateliers ou conférences éco-responsables.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
