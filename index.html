@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kapsul</title>
+  <title>The Loop - Accueil</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -13,32 +14,31 @@
       padding: 0;
       font-family: 'Inter', sans-serif;
     }
-
     body {
-      background-color: #f5f7fa;
-      color: #333;
+      background-color: #335599;
+      color: #fff;
+      min-height: 100vh;
     }
-
     header {
-      background-color: #36B37E;
+      background-color: #80a6ff;
       color: white;
-      padding: 1.2rem 1rem;
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom-left-radius: 1.2rem;
-      border-bottom-right-radius: 1.2rem;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       position: relative;
     }
-
-    header h1 {
-      font-size: 1.5rem;
+    header img.logo {
+      height: 40px;
     }
-
     .profile-container {
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-
     .profile-pic {
       width: 40px;
       height: 40px;
@@ -49,19 +49,42 @@
       border: 2px solid white;
       cursor: pointer;
     }
-
+    .notification-icon {
+      position: relative;
+      cursor: pointer;
+      color: #d62828;
+      font-size: 1.5rem;
+    }
+    .notification-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #d62828;
+      color: white;
+      font-size: 0.7rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      box-shadow: 0 0 4px #ff4c4c;
+    }
     .dropdown-menu {
       display: none;
       position: absolute;
       top: 55px;
       right: 0;
       background: white;
+      color: #333;
       border-radius: 0.6rem;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       overflow: hidden;
       z-index: 100;
+      white-space: nowrap;
+      min-width: 180px;
     }
-
     .dropdown-menu a {
       display: block;
       padding: 0.8rem 1.2rem;
@@ -69,139 +92,152 @@
       color: #333;
       border-bottom: 1px solid #eee;
     }
-
     .dropdown-menu a:last-child {
       border-bottom: none;
     }
-
     .dropdown-menu a:hover {
       background-color: #f0f0f0;
     }
-
     .container {
-      padding: 1rem;
+      padding: 1rem 1.5rem;
     }
-
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     .points-card {
-      background: white;
+      background: linear-gradient(270deg, #00f2fe, #4facfe, #00f2fe);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
       border-radius: 1rem;
       padding: 1.5rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       margin-bottom: 1.5rem;
       text-align: center;
+      color: white;
     }
-
     .points-card h2 {
       font-size: 2rem;
-      color: #36B37E;
       margin-bottom: 0.5rem;
     }
-
     .points-card p {
       font-size: 1rem;
-      color: #777;
     }
-
-    .actions-list {
+    .recent-rewards-cards {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      margin-bottom: 1rem;
     }
-
-    .action {
-      background: white;
-      padding: 1rem;
-      border-radius: 0.8rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    .reward-card {
+      background: #1f2a3c;
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
     }
-
-    .action span {
-      font-weight: 600;
+    .reward-card i {
+      font-size: 2.5rem;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
     }
-
+    .reward-card:nth-child(1) i { color: #4caf50; }
+    .reward-card:nth-child(2) i { color: #ff7043; }
+    .reward-card:nth-child(3) i { color: #29b6f6; }
+    .reward-card:nth-child(4) i { color: #fdd835; }
+    .reward-card h4 {
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
     .reward-button {
-      background-color: #36B37E;
+      background-color: #d62828;
       color: white;
       border: none;
       padding: 0.75rem 1.2rem;
       font-size: 1rem;
       border-radius: 0.8rem;
-      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
       width: 100%;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-
     .reward-button:hover {
-      background-color: #2e9b6c;
+      background-color: #b31e1e;
     }
-
-    .icon {
-      color: #36B37E;
-      font-size: 1.2rem;
-    }
-
-    .available-actions {
-      margin-top: 2rem;
-    }
-
     .available-actions h3 {
       margin-bottom: 1rem;
       font-size: 1.2rem;
-      color: #555;
     }
-
-    .action-card {
-      background: white;
-      border-radius: 0.8rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      padding: 1rem;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
+    .grid-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+    }
+    .action-icon-card {
+      background: linear-gradient(135deg, #36B37E, #4caf50);
+      color: white;
+      border-radius: 1rem;
+      padding: 3rem;
+      text-align: center;
+      font-size: 4rem;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      user-select: none;
     }
-
-    .action-card:hover {
-      transform: scale(1.02);
+    .action-icon-card:nth-child(2) { background: linear-gradient(135deg, #FF6B6B, #ff8a65); }
+    .action-icon-card:nth-child(3) { background: linear-gradient(135deg, #FFA726, #ffd54f); }
+    .action-icon-card:nth-child(4) { background: linear-gradient(135deg, #42A5F5, #64b5f6); }
+    .action-icon-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
-
-    .action-card i {
-      font-size: 1.5rem;
-      color: #36B37E;
+    .see-more-button {
+      margin-top: 1rem;
+      background-color: #444;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
     }
-
-    .action-card div {
-      flex: 1;
+    .see-more-button:hover {
+      background-color: #666;
     }
-
-    .action-card .points {
-      font-weight: bold;
-      color: #36B37E;
-    }
-
     .sensibilisation {
       margin-top: 3rem;
+      background: #1c2a3a;
+      padding: 1rem;
+      border-radius: 1rem;
     }
-
     .sensibilisation h3 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: #444;
     }
-
     .sensibilisation ul {
       list-style: disc inside;
-      color: #555;
-      padding-left: 1rem;
+      color: #ccc;
+      margin-left: 1rem;
     }
-
-    .sensibilisation li {
-      margin-bottom: 0.5rem;
+    .sensibilisation button {
+      margin-top: 1rem;
+      background-color: #d62828;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .sensibilisation button:hover {
+      background-color: #b31e1e;
     }
   </style>
   <script>
@@ -221,13 +257,18 @@
 </head>
 <body>
   <header>
-    <h1>Kapsul</h1>
+    <img src="kapsul.png" alt="Logo The Loop" class="logo">
     <div class="profile-container">
+      <div class="notification-icon">
+        <i class="fas fa-bell"></i>
+        <div class="notification-badge">3</div>
+      </div>
       <div class="profile-pic"></div>
       <div class="dropdown-menu">
         <a href="#">👤 Mon profil</a>
         <a href="#">⚙️ Paramètres</a>
-        <a href="#">👩‍🎓 Prénom Nom</a>
+        <a href="#">👩‍🎓 RE-KAPSUL</a>
+        <a href="#">🔥 Trace ta Kapsul</a>
         <a href="#">🤝 Devenir partenaire</a>
         <a href="#">🚪 Déconnexion</a>
       </div>
@@ -240,53 +281,25 @@
       <p>Bravo ! Continue tes actions responsables 🎉</p>
     </div>
 
-    <div class="actions-list">
-      <div class="action">
-        <span><i class="fas fa-car icon"></i> Covoiturage effectué</span>
-        <span>+50 pts</span>
-      </div>
-      <div class="action">
-        <span><i class="fas fa-bicycle icon"></i> Venu à vélo</span>
-        <span>+30 pts</span>
-      </div>
-      <div class="action">
-        <span><i class="fas fa-bottle-water icon"></i> Gourde réutilisée</span>
-        <span>+10 pts</span>
-      </div>
+    <div class="recent-rewards-cards">
+      <div class="reward-card"><i class="fas fa-car"></i><div><h4>Roule ensemble</h4><p>Covoiture pour réduire les émissions</p></div></div>
+      <div class="reward-card"><i class="fas fa-tshirt"></i><div><h4>Donne moi ton pull</h4><p>Donne un vêtement inutilisé</p></div></div>
+      <div class="reward-card"><i class="fas fa-handshake"></i><div><h4>Deals engagé</h4><p>Achète chez nos partenaires écoresponsables</p></div></div>
+      <div class="reward-card"><i class="fas fa-bolt"></i><div><h4>Challenge accepté</h4><p>Relève un défi hebdomadaire</p></div></div>
+      <div class="reward-card"><i class="fas fa-burger"></i><div><h4>Pop'n'food</h4><p>Choisis des repas locaux ou faits maison pour réduire ton empreinte carbone</p></div></div>
     </div>
 
     <button class="reward-button"><i class="fas fa-gift"></i> Voir mes récompenses</button>
 
     <div class="available-actions">
       <h3>Actions à effectuer</h3>
-      <div class="action-card">
-        <i class="fas fa-mobile-alt"></i>
-        <div>
-          <div>Donner un vieux téléphone</div>
-          <div class="points">+80 pts</div>
-        </div>
+      <div class="grid-actions">
+        <div class="action-icon-card"><i class="fas fa-mobile-alt"></i></div>
+        <div class="action-icon-card"><i class="fas fa-tree"></i></div>
+        <div class="action-icon-card"><i class="fas fa-hand-holding-heart"></i></div>
+        <div class="action-icon-card"><i class="fas fa-recycle"></i></div>
       </div>
-      <div class="action-card">
-        <i class="fas fa-tree"></i>
-        <div>
-          <div>Planter un arbre</div>
-          <div class="points">+100 pts</div>
-        </div>
-      </div>
-      <div class="action-card">
-        <i class="fas fa-hand-holding-heart"></i>
-        <div>
-          <div>Participer à un événement solidaire</div>
-          <div class="points">+70 pts</div>
-        </div>
-      </div>
-      <div class="action-card">
-        <i class="fas fa-recycle"></i>
-        <div>
-          <div>Recycler ses déchets électroniques</div>
-          <div class="points">+60 pts</div>
-        </div>
-      </div>
+      <button class="see-more-button">Voir plus</button>
     </div>
 
     <div class="sensibilisation">
@@ -298,6 +311,7 @@
         <li>Favorise une alimentation locale et de saison.</li>
         <li>Participe à des ateliers ou conférences éco-responsables.</li>
       </ul>
+      <button>Continuer la lecture et obtenir des points</button>
     </div>
   </div>
 </body>
